@@ -202,23 +202,32 @@
   .service-link svg{transition:transform .2s ease;}
   .service-card:hover .service-link svg{transform:translateX(-3px);}
 
-  /* ===== GALLERY ===== */
-  .gallery{background:var(--surface);}
-  .gallery-grid{
-    display:grid; grid-template-columns:1.2fr 1fr; gap:22px;
+  /* ===== RESEARCH ===== */
+  .research{background:var(--surface);}
+  .research-list{
+    display:flex; flex-direction:column; gap:16px; max-width:760px; margin:0 auto;
   }
-  @media (max-width:720px){ .gallery-grid{grid-template-columns:1fr;} }
-  .gallery-item{
-    position:relative; border-radius:26px; overflow:hidden; box-shadow:var(--shadow);
-    background:var(--ink);
+  .research-item{
+    display:flex; align-items:center; gap:18px;
+    background:var(--bg); border:1px solid var(--line); border-radius:18px;
+    padding:20px 22px;
   }
-  .gallery-item img{width:100%; height:100%; object-fit:cover; display:block;}
-  .gallery-item.tall{aspect-ratio:4/5;}
-  .gallery-item.wide{aspect-ratio:4/5;}
-  .gallery-caption{
-    position:absolute; bottom:0; right:0; left:0;
-    background:linear-gradient(0deg, rgba(14,69,72,0.85), transparent);
-    color:#fff; padding:22px 20px 16px; font-size:.92rem; font-weight:500;
+  .research-icon{
+    width:48px; height:48px; border-radius:14px; flex-shrink:0;
+    background:linear-gradient(145deg, var(--mint-pale), var(--surface));
+    display:flex; align-items:center; justify-content:center; color:var(--teal-deep);
+  }
+  .research-info{flex-grow:1;}
+  .research-info h3{font-size:1.02rem; color:var(--teal-deep); font-weight:700; margin-bottom:4px;}
+  .research-meta{font-size:.86rem; color:var(--muted);}
+  .research-link{
+    display:inline-flex; align-items:center; gap:6px; flex-shrink:0;
+    color:var(--teal); font-weight:600; font-size:.9rem;
+    border:1.5px solid var(--teal); padding:8px 16px; border-radius:999px;
+  }
+  @media (max-width:560px){
+    .research-item{flex-wrap:wrap;}
+    .research-link{width:100%; justify-content:center;}
   }
 
   /* ===== SOCIAL ===== */
@@ -307,7 +316,7 @@
     <div class="nav-links">
       <a href="#about">نبذة عني</a>
       <a href="#services">الخدمات</a>
-      <a href="#gallery">من العيادة</a>
+      <a href="#research">البحوث العلمية</a>
       <a href="#contact">تواصل معي</a>
     </div>
     <a class="nav-cta" href="https://wa.me/9647865117621?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%83%D8%B1%D8%A7%D8%B1%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF." target="_blank" rel="noopener">
@@ -355,7 +364,7 @@
     <div class="about-text">
       <div class="eyebrow"><span class="dot"></span> نبذة عني</div>
       <h3>الدكتور كرار حيدر الحميداوي</h3>
-      <p>خريج بكلوريوس طب الأسنان من جامعة المستقبل، أمارس التدريب السريري في عيادات الجامعة مع تركيز خاص على جراحة قلع الأسنان وحل مشاكل الأسنان اليومية بأسلوب مريح للمريض.</p>
+      <p>بكلوريوس طب الأسنان من جامعة المستقبل، أمارس التدريب السريري في عيادات الجامعة مع اهتمام خاص بمتابعة الجديد علمياً في طب الأسنان وتطبيقه بأسلوب مريح وواضح لكل مريض.</p>
       <p>أؤمن إن التواصل الواضح جزء من العلاج، لهذا أشرح لكل مريض حالته وخياراته قبل ما نبدأ أي إجراء، وأتابع معه بعد الجلسة لو احتاج أي استفسار.</p>
       <ul class="credentials">
         <li>
@@ -438,20 +447,27 @@
 
 <svg class="smile-divider flip" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,60 C300,0 900,0 1200,60 L1200,0 L0,0 Z"></path></svg>
 
-<section class="gallery" id="gallery">
+<section class="research" id="research">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow"><span class="dot"></span> من العيادة</div>
-      <h2>لقطات من الشغل اليومي</h2>
+      <div class="eyebrow"><span class="dot"></span> البحوث العلمية</div>
+      <h2>مساهماتي البحثية</h2>
+      <p>بحوث ومقالات علمية في مجال طب الأسنان شاركت بإعدادها أو نشرها.</p>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-item tall">
-        <img src="images/dr-karrar-clinic.jpg" alt="الدكتور كرار حيدر أثناء العمل في العيادة">
-        <div class="gallery-caption">جاهز لخدمتك في عيادات جامعة المستقبل</div>
-      </div>
-      <div class="gallery-item wide">
-        <img src="images/dr-karrar-poster.jpg" alt="بطاقة تعريف الدكتور كرار حيدر - KAR Dentist">
-        <div class="gallery-caption">تابعني على السوشال ميديا لمحتوى توعوي عن صحة الأسنان</div>
+    <div class="research-list">
+      <!-- PLACEHOLDER_RESEARCH_ITEM -->
+      <div class="research-item">
+        <div class="research-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+        </div>
+        <div class="research-info">
+          <h3>عنوان البحث</h3>
+          <p class="research-meta">جهة النشر · التاريخ</p>
+        </div>
+        <a class="research-link" href="#" target="_blank" rel="noopener">
+          عرض
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+        </a>
       </div>
     </div>
   </div>
