@@ -8,315 +8,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #EAF3F0;
-    --surface: #FFFFFF;
-    --ink: #123B3E;
-    --ink-soft: #35595C;
-    --muted: #5C7B79;
-    --teal: #1F6F72;
-    --teal-deep: #0E4548;
-    --mint: #5FB8AE;
-    --mint-pale: #CFE7E1;
-    --whatsapp: #23C05C;
-    --line: rgba(18,59,62,0.12);
-    --shadow: 0 18px 40px -18px rgba(14,69,72,0.35);
-  }
-
-  *{margin:0;padding:0;box-sizing:border-box;}
-
-  html{scroll-behavior:smooth;}
-
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'IBM Plex Sans Arabic', sans-serif;
-    line-height:1.7;
-    overflow-x:hidden;
-  }
-
-  h1,h2,h3,.wordmark{
-    font-family:'El Messiri', 'IBM Plex Sans Arabic', sans-serif;
-  }
-
-  a{color:inherit; text-decoration:none;}
-  img{display:block; max-width:100%;}
-  .container{
-    width:100%;
-    max-width:1080px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-
-  /* ===== NAV ===== */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(234,243,240,0.88);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:14px 24px;
-    max-width:1080px; margin:0 auto;
-  }
-  .wordmark{
-    font-weight:700; font-size:1.25rem; color:var(--teal-deep);
-    display:flex; align-items:center; gap:8px;
-  }
-  .wordmark .tooth-dot{width:10px;height:10px;border-radius:50% 50% 50% 0;background:var(--mint);transform:rotate(45deg);}
-  .nav-links{display:flex; gap:28px; font-size:.95rem; font-weight:500; color:var(--ink-soft);}
-  .nav-links a{position:relative; padding:4px 0;}
-  .nav-links a::after{content:"";position:absolute;bottom:-2px;right:0;width:0;height:2px;background:var(--mint);transition:width .25s ease;}
-  .nav-links a:hover::after{width:100%;}
-  .nav-cta{
-    background:var(--whatsapp); color:#fff; padding:9px 20px; border-radius:999px;
-    font-weight:600; font-size:.9rem; display:flex; align-items:center; gap:6px;
-    box-shadow:0 8px 20px -8px rgba(35,192,92,0.6);
-  }
-  @media (max-width:720px){ .nav-links{display:none;} }
-
-  /* ===== HERO ===== */
-  .hero{
-    position:relative;
-    padding:64px 0 40px;
-    overflow:hidden;
-  }
-  .hero .container{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:40px;
-    align-items:center;
-  }
-  .hero-blob{
-    position:absolute; inset:0; z-index:0; pointer-events:none;
-  }
-  .hero-blob svg{position:absolute; top:-120px; left:-160px; opacity:.5;}
-
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--surface); border:1px solid var(--line);
-    color:var(--teal); font-weight:600; font-size:.82rem;
-    padding:6px 14px; border-radius:999px; margin-bottom:18px;
-  }
-  .eyebrow span.dot{width:7px;height:7px;border-radius:50%;background:var(--whatsapp);}
-
-  .hero h1{
-    font-size:clamp(2.1rem, 4.4vw, 3.1rem);
-    font-weight:700; color:var(--teal-deep); line-height:1.25;
-    margin-bottom:16px;
-  }
-  .hero h1 em{
-    font-style:normal; color:var(--mint);
-    position:relative;
-  }
-  .hero p.lead{
-    color:var(--ink-soft); font-size:1.08rem; max-width:46ch; margin-bottom:30px;
-  }
-  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
-  .btn{
-    display:inline-flex; align-items:center; gap:9px;
-    padding:14px 26px; border-radius:14px; font-weight:600; font-size:.98rem;
-    transition:transform .2s ease, box-shadow .2s ease;
-  }
-  .btn:active{transform:scale(.97);}
-  .btn-primary{background:var(--whatsapp); color:#fff; box-shadow:0 14px 30px -12px rgba(35,192,92,0.55);}
-  .btn-primary:hover{box-shadow:0 18px 34px -10px rgba(35,192,92,0.7);}
-  .btn-ghost{background:transparent; border:1.5px solid var(--teal-deep); color:var(--teal-deep);}
-  .btn-ghost:hover{background:var(--teal-deep); color:#fff;}
-
-  .hero-photo{position:relative; z-index:1; justify-self:center;}
-  .hero-photo .frame{
-    width:min(340px, 80vw); aspect-ratio:3/4; border-radius:44% 56% 52% 48% / 55% 48% 52% 45%;
-    overflow:hidden; box-shadow:var(--shadow); border:6px solid var(--surface);
-    position:relative;
-  }
-  .hero-photo .frame img{width:100%; height:100%; object-fit:cover;}
-  .hero-photo .badge{
-    position:absolute; bottom:-10px; right:-16px;
-    background:var(--surface); border-radius:16px; padding:12px 16px;
-    box-shadow:var(--shadow); display:flex; align-items:center; gap:10px;
-    font-size:.85rem; font-weight:600; color:var(--teal-deep);
-  }
-  .hero-photo .badge svg{flex-shrink:0;}
-
-  /* smile divider */
-  .smile-divider{width:100%; height:60px; display:block;}
-  .smile-divider path{fill:var(--surface);}
-  .smile-divider.flip path{fill:var(--bg);}
-
-  section{padding:20px 0 84px;}
-  .section-head{margin-bottom:40px; text-align:center;}
-  .section-head .eyebrow{margin-bottom:14px;}
-  .section-head h2{font-size:clamp(1.6rem,3vw,2.2rem); color:var(--teal-deep); font-weight:700;}
-  .section-head p{color:var(--muted); max-width:52ch; margin:12px auto 0;}
-
-  /* ===== ABOUT ===== */
-  .about{background:var(--surface);}
-  .about .container{
-    display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; align-items:center;
-  }
-  .about-card{
-    background:var(--bg); border-radius:28px; padding:10px;
-    box-shadow:var(--shadow);
-  }
-  .about-card img{border-radius:22px; width:100%; aspect-ratio:4/5; object-fit:cover;}
-  .about-text h3{color:var(--teal-deep); font-size:1.5rem; margin-bottom:14px;}
-  .about-text p{color:var(--ink-soft); margin-bottom:16px;}
-  .credentials{list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:22px;}
-  .credentials li{
-    display:flex; align-items:flex-start; gap:12px; font-size:.98rem; color:var(--ink);
-    background:var(--bg); border:1px solid var(--line); padding:12px 16px; border-radius:14px;
-  }
-  .credentials li svg{flex-shrink:0; margin-top:2px;}
-  .credentials b{color:var(--teal-deep);}
-
-  /* ===== SERVICES ===== */
-  .services{background:var(--bg);}
-  .service-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
-  }
-  @media (max-width:900px){ .service-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:520px){ .service-grid{grid-template-columns:1fr;} }
-
-  .service-card{
-    background:var(--surface); border-radius:22px; padding:28px 22px;
-    display:flex; flex-direction:column; gap:14px;
-    border:1px solid var(--line);
-    transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .service-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
-  .service-icon{
-    width:54px; height:54px; border-radius:16px;
-    background:linear-gradient(145deg, var(--mint-pale), var(--bg));
-    display:flex; align-items:center; justify-content:center;
-    color:var(--teal-deep);
-  }
-  .service-card h3{font-size:1.12rem; color:var(--teal-deep); font-weight:700;}
-  .service-card p{color:var(--muted); font-size:.92rem; flex-grow:1;}
-  .service-link{
-    display:inline-flex; align-items:center; gap:6px;
-    color:var(--whatsapp); font-weight:600; font-size:.9rem;
-  }
-  .service-link svg{transition:transform .2s ease;}
-  .service-card:hover .service-link svg{transform:translateX(-3px);}
-
-  /* ===== RESEARCH ===== */
-  .research{background:var(--surface);}
-  .research-list{
-    display:flex; flex-direction:column; gap:16px; max-width:760px; margin:0 auto;
-  }
-  .research-item{
-    display:flex; align-items:center; gap:18px;
-    background:var(--bg); border:1px solid var(--line); border-radius:18px;
-    padding:20px 22px;
-  }
-  .research-icon{
-    width:48px; height:48px; border-radius:14px; flex-shrink:0;
-    background:linear-gradient(145deg, var(--mint-pale), var(--surface));
-    display:flex; align-items:center; justify-content:center; color:var(--teal-deep);
-  }
-  .research-info{flex-grow:1;}
-  .research-info h3{font-size:1.02rem; color:var(--teal-deep); font-weight:700; margin-bottom:4px;}
-  .research-meta{font-size:.86rem; color:var(--muted);}
-  .research-link{
-    display:inline-flex; align-items:center; gap:6px; flex-shrink:0;
-    color:var(--teal); font-weight:600; font-size:.9rem;
-    border:1.5px solid var(--teal); padding:8px 16px; border-radius:999px;
-  }
-  @media (max-width:560px){
-    .research-item{flex-wrap:wrap;}
-    .research-link{width:100%; justify-content:center;}
-  }
-
-  /* ===== SOCIAL ===== */
-  .social{background:var(--bg);}
-  .social-grid{display:flex; gap:20px; justify-content:center; flex-wrap:wrap;}
-  .social-card{
-    background:var(--surface); border-radius:20px; padding:26px 34px;
-    display:flex; align-items:center; gap:16px; min-width:230px;
-    border:1px solid var(--line); box-shadow:0 10px 26px -18px rgba(14,69,72,0.3);
-    transition:transform .2s ease;
-  }
-  .social-card:hover{transform:translateY(-4px);}
-  .social-icon{
-    width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-  }
-  .social-icon.ig{background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7);}
-  .social-icon.tt{background:#000;}
-  .social-card .handle{font-weight:700; color:var(--teal-deep); font-size:1.02rem;}
-  .social-card .plat{font-size:.82rem; color:var(--muted);}
-
-  /* ===== FOOTER / CONTACT ===== */
-  footer{
-    background:var(--teal-deep); color:#EAF3F0; padding:56px 0 28px; position:relative;
-  }
-  .footer-grid{
-    display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:36px;
-    padding-bottom:36px; border-bottom:1px solid rgba(234,243,240,0.15);
-  }
-  @media (max-width:720px){ .footer-grid{grid-template-columns:1fr; gap:28px;} }
-  footer h4{font-size:1rem; margin-bottom:16px; color:#fff; font-weight:700;}
-  footer .wordmark{color:#fff;}
-  footer p{color:rgba(234,243,240,0.75); font-size:.92rem; margin-bottom:10px;}
-  .foot-link{
-    display:flex; align-items:center; gap:10px; color:rgba(234,243,240,0.9);
-    font-size:.94rem; margin-bottom:12px;
-  }
-  .foot-link svg{flex-shrink:0; color:var(--mint);}
-  .foot-cta{
-    display:inline-flex; align-items:center; gap:8px; margin-top:8px;
-    background:var(--whatsapp); color:#fff; padding:12px 22px; border-radius:12px; font-weight:600;
-  }
-  .bottom-bar{
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
-    padding-top:22px; font-size:.82rem; color:rgba(234,243,240,0.55);
-  }
-
-  /* floating whatsapp button */
-  .float-wa{
-    position:fixed; bottom:22px; left:22px; z-index:60;
-    width:58px; height:58px; border-radius:50%;
-    background:var(--whatsapp); display:flex; align-items:center; justify-content:center;
-    box-shadow:0 12px 28px -8px rgba(35,192,92,0.65);
-    animation:pulse 2.4s infinite;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(35,192,92,0.45);}
-    70%{box-shadow:0 0 0 16px rgba(35,192,92,0);}
-    100%{box-shadow:0 0 0 0 rgba(35,192,92,0);}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .float-wa{animation:none;}
-    *{transition:none !important;}
-  }
-
-  @media (max-width:900px){
-    .hero .container{grid-template-columns:1fr; text-align:center;}
-    .hero p.lead{margin-inline:auto;}
-    .hero-actions{justify-content:center;}
-    .about .container{grid-template-columns:1fr;}
-    .about-card{max-width:340px; margin:0 auto;}
-  }
-
-  a:focus-visible, button:focus-visible{
-    outline:3px solid var(--mint); outline-offset:3px; border-radius:6px;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
   <nav>
-    <div class="wordmark"><span class="tooth-dot"></span> KAR Dentist</div>
+    <a href="index.html" class="wordmark"><span class="tooth-dot"></span> KAR Dentist</a>
     <div class="nav-links">
       <a href="#about">نبذة عني</a>
+      <a href="posts.html">المنشورات</a>
       <a href="#services">الخدمات</a>
+      <a href="#cases">حالات العيادة</a>
       <a href="#research">البحوث العلمية</a>
+      <a href="#faq">الأسئلة الشائعة</a>
       <a href="#contact">تواصل معي</a>
     </div>
     <a class="nav-cta" href="https://wa.me/9647865117621?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%83%D8%B1%D8%A7%D8%B1%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF." target="_blank" rel="noopener">
@@ -447,6 +152,30 @@
 
 <svg class="smile-divider flip" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,60 C300,0 900,0 1200,60 L1200,0 L0,0 Z"></path></svg>
 
+<section class="cases" id="cases">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot"></span> حالات العيادة</div>
+      <h2>تقارير حالات حقيقية</h2>
+      <p>حالات أشتغل عليها بالعيادة يومياً، بالتفاصيل والنتيجة النهائية.</p>
+    </div>
+    <div class="case-grid">
+      <!-- PLACEHOLDER_CASE_CARD: انسخ هذا الكارد وبدل الصورة والنص لكل حالة جديدة -->
+      <div class="case-card">
+        <div class="case-thumb">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5-9 9"/></svg>
+          <span>صورة الحالة</span>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">قلع الأسنان</span>
+          <h3>عنوان الحالة</h3>
+          <p>وصف مختصر عن الحالة، التشخيص، والإجراء اللي تم عمله.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="research" id="research">
   <div class="container">
     <div class="section-head">
@@ -469,6 +198,34 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot"></span> استفسارات</div>
+      <h2>الأسئلة الشائعة</h2>
+      <p>أسئلة يسألني إياها المرضى كثير، جاوبت عليها هنا لتوفر وقتك.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>هل قلع الأسنان مؤلم؟</summary>
+        <p>نستخدم تخدير موضعي فعّال قبل أي إجراء، فما تحس بألم أثناء القلع نفسه. بعد زوال مفعول التخدير قد يصير انزعاج بسيط طبيعي، ونعطيك إرشادات واضحة للعناية تقلل منه.</p>
+      </details>
+      <details class="faq-item">
+        <summary>كم يستغرق تنظيف الأسنان؟</summary>
+        <p>جلسة التنظيف العادية تاخذ من 20 إلى 40 دقيقة حسب كمية الجير والتصبغات، وهي إجراء بسيط وغير مؤلم.</p>
+      </details>
+      <details class="faq-item">
+        <summary>الحشوة الضوئية تدوم إلى متى؟</summary>
+        <p>مع العناية المناسبة، تدوم الحشوة الضوئية لسنوات طويلة. العمر الفعلي يعتمد على موقع الحشوة وعادات تنظيف الأسنان اليومية.</p>
+      </details>
+      <details class="faq-item">
+        <summary>شلون أحجز موعد؟</summary>
+        <p>أسهل طريقة هي الضغط على أي زر "احجز عبر واتساب" بالموقع، وراح تنفتح محادثة جاهزة معي مباشرة لتحديد الموعد المناسب.</p>
+      </details>
     </div>
   </div>
 </section>
